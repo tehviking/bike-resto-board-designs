@@ -8,6 +8,9 @@ import { Wrench, Package, CheckCircle, PauseCircle } from "lucide-react"
 import bikeProject1 from "@/assets/bike-project-1.jpg"
 import bikeProject2 from "@/assets/bike-project-2.jpg"
 import bikeProject3 from "@/assets/bike-project-3.jpg"
+import bikeProject4 from "@/assets/bike-project-4.jpg"
+import bikeProject5 from "@/assets/bike-project-5.jpg"
+import bikeProject6 from "@/assets/bike-project-6.jpg"
 
 // Sample data - in a real app this would come from your backend
 const projects = [
@@ -49,6 +52,7 @@ const projects = [
     nextStep: "Waiting for custom wheels to arrive",
     startDate: "2024-01-20",
     targetDate: "2024-03-01",
+    imageUrl: bikeProject4,
   },
   {
     id: "5",
@@ -58,6 +62,7 @@ const projects = [
     nextStep: "Rebuild rear derailleur and adjust shifting",
     startDate: "2024-02-10",
     targetDate: "2024-04-15",
+    imageUrl: bikeProject5,
   },
   {
     id: "6",
@@ -67,6 +72,7 @@ const projects = [
     nextStep: "Order new 1x drivetrain components",
     startDate: "2024-03-01",
     targetDate: "2024-05-01",
+    imageUrl: bikeProject6,
   },
 ]
 
