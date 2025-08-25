@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "@/components/app-sidebar";
 import Dashboard from "./admin/dashboard/Dashboard";
 import ProjectDetail from "./admin/project/ProjectDetail";
+import ProjectForm from "./pages/ProjectForm";
 import Inspiration from "./pages/Inspiration";
 import AllParts from "./pages/AllParts";
 import AllProjects from "./pages/AllProjects";
@@ -27,6 +28,8 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/admin/project/:project_id" element={<ProjectDetail />} />
+                <Route path="/admin/project/:project_id/edit" element={<ProjectForm />} />
+                <Route path="/projects/new" element={<ProjectForm />} />
                 <Route path="/projects" element={<AllProjects />} />
                 <Route path="/parts" element={<AllParts />} />
                 <Route path="/inspiration" element={<Inspiration />} />
