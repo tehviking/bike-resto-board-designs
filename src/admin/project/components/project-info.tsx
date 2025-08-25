@@ -148,6 +148,35 @@ export function ProjectInfo({ project }: ProjectInfoProps) {
               </div>
             </div>
 
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="parts_total">Parts Total</Label>
+                <Input 
+                  id="parts_total"
+                  name="project[parts_total]" 
+                  type="number"
+                  step="0.01"
+                  placeholder="0.00"
+                  defaultValue="285.50"
+                  readOnly
+                  className="bg-muted"
+                />
+                <p className="text-xs text-muted-foreground">Calculated from parts tracker</p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="final_cost">Final Restoration Cost</Label>
+                <Input 
+                  id="final_cost"
+                  name="project[final_cost]" 
+                  type="number"
+                  step="0.01"
+                  placeholder="0.00"
+                  defaultValue="450.00"
+                />
+                <p className="text-xs text-muted-foreground">Total cost including labor, misc expenses</p>
+              </div>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="project_notes">Notes</Label>
               <Textarea 
@@ -199,6 +228,18 @@ export function ProjectInfo({ project }: ProjectInfoProps) {
               <div>
                 <h3 className="font-medium text-sm text-muted-foreground">Actual Cost</h3>
                 <p className="text-sm">{project.actualCost}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <h3 className="font-medium text-sm text-muted-foreground">Parts Total</h3>
+                <p className="text-sm">$285.50</p>
+              </div>
+              <div>
+                <h3 className="font-medium text-sm text-muted-foreground">Final Restoration Cost</h3>
+                <p className="text-sm">$450.00</p>
+                <p className="text-xs text-muted-foreground">+$164.50 over parts cost</p>
               </div>
             </div>
 

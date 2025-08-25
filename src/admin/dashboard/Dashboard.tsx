@@ -1,5 +1,6 @@
 import { ProjectCard } from "@/components/project-card"
 import { DashboardHeader } from "./components/dashboard-header"
+import { PartsOverview } from "./components/parts-overview"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts"
@@ -202,6 +203,11 @@ export default function Dashboard() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Parts Overview */}
+        <div className="mb-8">
+          <PartsOverview />
+        </div>
 
         {/* Project Grid */}
         <div className="space-y-6">
