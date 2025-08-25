@@ -17,6 +17,7 @@ interface Part {
   supplier: string
   cost: string
   orderDate?: string
+  projectedArrivalDate?: string
   receivedDate?: string
   installedDate?: string
   notes: string
@@ -37,6 +38,7 @@ const mockParts: Part[] = [
     supplier: "Bike Shop Supply",
     cost: "$24.99",
     orderDate: "2024-01-22",
+    projectedArrivalDate: "2024-01-25",
     receivedDate: "2024-01-25",
     notes: "Quality cables, good fit"
   },
@@ -49,6 +51,7 @@ const mockParts: Part[] = [
     supplier: "Chain Reaction Cycles",
     cost: "$35.00",
     orderDate: "2024-01-23",
+    projectedArrivalDate: "2024-01-28",
     notes: "Expedited shipping requested"
   },
   {
@@ -189,6 +192,15 @@ export function PartsTracker({ projectId }: PartsTrackerProps) {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="part_projected_arrival">Projected Arrival</Label>
+                    <Input 
+                      id="part_projected_arrival"
+                      name="part[projected_arrival_date]" 
+                      type="date"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="part_received_date">Received Date</Label>
                     <Input 
                       id="part_received_date"
@@ -196,15 +208,16 @@ export function PartsTracker({ projectId }: PartsTrackerProps) {
                       type="date"
                     />
                   </div>
+                </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="part_installed_date">Installed Date</Label>
-                    <Input 
-                      id="part_installed_date"
-                      name="part[installed_date]" 
-                      type="date"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="part_installed_date">Installed Date</Label>
+                  <Input 
+                    id="part_installed_date"
+                    name="part[installed_date]" 
+                    type="date"
+                    className="max-w-xs"
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -320,6 +333,16 @@ export function PartsTracker({ projectId }: PartsTrackerProps) {
                       </div>
 
                       <div className="space-y-2">
+                        <Label htmlFor={`part_projected_arrival_${part.id}`}>Projected Arrival</Label>
+                        <Input 
+                          id={`part_projected_arrival_${part.id}`}
+                          name="part[projected_arrival_date]" 
+                          type="date"
+                          defaultValue={part.projectedArrivalDate}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
                         <Label htmlFor={`part_received_date_${part.id}`}>Received Date</Label>
                         <Input 
                           id={`part_received_date_${part.id}`}
@@ -328,16 +351,17 @@ export function PartsTracker({ projectId }: PartsTrackerProps) {
                           defaultValue={part.receivedDate}
                         />
                       </div>
+                    </div>
 
-                      <div className="space-y-2">
-                        <Label htmlFor={`part_installed_date_${part.id}`}>Installed Date</Label>
-                        <Input 
-                          id={`part_installed_date_${part.id}`}
-                          name="part[installed_date]" 
-                          type="date"
-                          defaultValue={part.installedDate}
-                        />
-                      </div>
+                    <div className="space-y-2">
+                      <Label htmlFor={`part_installed_date_${part.id}`}>Installed Date</Label>
+                      <Input 
+                        id={`part_installed_date_${part.id}`}
+                        name="part[installed_date]" 
+                        type="date"
+                        defaultValue={part.installedDate}
+                        className="max-w-xs"
+                      />
                     </div>
 
                     <div className="space-y-2">
@@ -409,6 +433,12 @@ export function PartsTracker({ projectId }: PartsTrackerProps) {
                         <div>
                           <span className="text-muted-foreground">Ordered: </span>
                           <span className="font-medium">{new Date(part.orderDate).toLocaleDateString()}</span>
+                        </div>
+                      )}
+                      {part.status === "ordered" && part.projectedArrivalDate && (
+                        <div>
+                          <span className="text-muted-foreground">Expected: </span>
+                          <span className="font-medium text-blue-600">{new Date(part.projectedArrivalDate).toLocaleDateString()}</span>
                         </div>
                       )}
                       {part.receivedDate && (

@@ -12,6 +12,7 @@ interface Part {
   supplier: string
   cost: string
   orderDate?: string
+  projectedArrivalDate?: string
   projectId: string
   projectTitle: string
 }
@@ -33,6 +34,7 @@ const mockGlobalParts: Part[] = [
     supplier: "Bike Shop Supply",
     cost: "$24.99",
     orderDate: "2024-01-23",
+    projectedArrivalDate: "2024-01-28",
     projectId: "1",
     projectTitle: "1985 Trek 720 Touring Bike"
   },
@@ -44,6 +46,7 @@ const mockGlobalParts: Part[] = [
     supplier: "Chain Reaction Cycles",
     cost: "$35.00",
     orderDate: "2024-01-23",
+    projectedArrivalDate: "2024-01-30",
     projectId: "1",
     projectTitle: "1985 Trek 720 Touring Bike"
   },
@@ -55,6 +58,7 @@ const mockGlobalParts: Part[] = [
     supplier: "Local Wheel Builder",
     cost: "$450.00",
     orderDate: "2024-01-20",
+    projectedArrivalDate: "2024-02-10",
     projectId: "4",
     projectTitle: "Custom Fixed Gear Build"
   },
@@ -146,6 +150,11 @@ export function PartsOverview() {
                       {part.orderDate && (
                         <span className="text-xs text-muted-foreground">
                           Ordered {new Date(part.orderDate).toLocaleDateString()}
+                        </span>
+                      )}
+                      {part.projectedArrivalDate && (
+                        <span className="text-xs text-blue-600 font-medium">
+                          Expected {new Date(part.projectedArrivalDate).toLocaleDateString()}
                         </span>
                       )}
                     </div>
