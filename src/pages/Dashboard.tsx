@@ -161,33 +161,45 @@ export default function Dashboard() {
               <Badge variant="secondary">{projects.length} Total</Badge>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <ChartContainer
-              config={{
-                count: {
-                  label: "Projects",
-                  color: "hsl(var(--chart-1))",
-                },
-              }}
-              className="h-[200px]"
-            >
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis 
-                    dataKey="status" 
-                    tick={{ fontSize: 12 }}
-                    interval={0}
+          <CardContent className="space-y-4">
+            {/* Horizontal Status Bar */}
+            <div className="flex h-3 rounded-full overflow-hidden bg-muted">
+              {chartData.map((item, index) => {
+                const percentage = (item.count / projects.length) * 100
+                return item.count > 0 ? (
+                  <div
+                    key={item.status}
+                    className="h-full transition-all duration-300"
+                    style={{
+                      width: `${percentage}%`,
+                      backgroundColor: item.fill,
+                    }}
                   />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar 
-                    dataKey="count" 
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
+                ) : null
+              })}
+            </div>
+            
+            {/* Status Legend */}
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              {chartData.map((item) => {
+                const percentage = projects.length > 0 ? ((item.count / projects.length) * 100).toFixed(1) : 0
+                return (
+                  <div key={item.status} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div 
+                        className="w-3 h-3 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: item.fill }}
+                      />
+                      <span className="text-muted-foreground">{item.status}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="font-medium">{item.count}</span>
+                      <span className="text-muted-foreground">({percentage}%)</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </CardContent>
         </Card>
 
