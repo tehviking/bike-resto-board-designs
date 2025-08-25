@@ -35,10 +35,10 @@ const mainItems = [
 ]
 
 const statusItems = [
-  { title: "Not Started", url: "/projects/not-started", icon: Clock },
-  { title: "In Progress", url: "/projects/in-progress", icon: Wrench },
-  { title: "Completed", url: "/projects/completed", icon: CheckCircle },
-  { title: "On Hold", url: "/projects/on-hold", icon: PauseCircle },
+  { title: "Not Started", url: "/projects?status=not-started", icon: Clock },
+  { title: "In Progress", url: "/projects?status=in-progress", icon: Wrench },
+  { title: "Completed", url: "/projects?status=completed", icon: CheckCircle },
+  { title: "On Hold", url: "/projects?status=on-hold", icon: PauseCircle },
 ]
 
 const settingsItems = [

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProjectCard } from "@/components/project-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, SortAsc, Plus, Package } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 import bikeProject1 from "@/assets/bike-project-1.jpg";
 import bikeProject2 from "@/assets/bike-project-2.jpg";
@@ -27,10 +28,19 @@ interface Project {
 }
 
 const AllProjects = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("title");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  // Initialize status filter from URL params
+  useEffect(() => {
+    const statusParam = searchParams.get("status");
+    if (statusParam && ["not-started", "in-progress", "completed", "on-hold"].includes(statusParam)) {
+      setStatusFilter(statusParam);
+    }
+  }, [searchParams]);
 
   // Sample data - in a real app this would come from your backend
   const allProjects: Project[] = [
@@ -139,6 +149,17 @@ const AllProjects = () => {
     return allProjects.filter(p => p.status === status).length;
   };
 
+  // Update URL when status filter changes
+  const handleStatusFilterChange = (value: string) => {
+    setStatusFilter(value);
+    if (value === "all") {
+      searchParams.delete("status");
+    } else {
+      searchParams.set("status", value);
+    }
+    setSearchParams(searchParams);
+  };
+
   const toggleSortOrder = () => {
     setSortOrder(prev => prev === "asc" ? "desc" : "asc");
   };
@@ -220,7 +241,7 @@ const AllProjects = () => {
 
             <div className="space-y-2">
               <Label htmlFor="status-filter">Filter by Status</Label>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <Select value={statusFilter} onValueChange={handleStatusFilterChange}>
                 <SelectTrigger>
                   <SelectValue placeholder="All statuses" />
                 </SelectTrigger>
@@ -278,6 +299,8 @@ const AllProjects = () => {
                 setStatusFilter("all");
                 setSortBy("title");
                 setSortOrder("asc");
+                searchParams.delete("status");
+                setSearchParams(searchParams);
               }}
             >
               Clear Filters
