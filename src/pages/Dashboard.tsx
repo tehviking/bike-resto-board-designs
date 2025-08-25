@@ -2,7 +2,8 @@ import { ProjectCard } from "@/components/project-card"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Wrench, Package, CheckCircle, PauseCircle } from "lucide-react"
 
 import bikeProject1 from "@/assets/bike-project-1.jpg"
@@ -104,9 +105,28 @@ const stats = [
 ]
 
 export default function Dashboard() {
-  const completionRate = Math.round(
-    (projects.filter(p => p.status === "completed").length / projects.length) * 100
-  )
+  const chartData = [
+    {
+      status: "Not Started",
+      count: projects.filter(p => p.status === "not-started").length,
+      fill: "hsl(var(--muted-foreground))",
+    },
+    {
+      status: "In Progress", 
+      count: projects.filter(p => p.status === "in-progress").length,
+      fill: "hsl(var(--primary))",
+    },
+    {
+      status: "On Hold",
+      count: projects.filter(p => p.status === "on-hold").length,
+      fill: "hsl(var(--warning))",
+    },
+    {
+      status: "Completed",
+      count: projects.filter(p => p.status === "completed").length,
+      fill: "hsl(var(--success))",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -133,19 +153,41 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Progress Overview */}
+        {/* Project Status Breakdown */}
         <Card className="bg-gradient-card shadow-card mb-8">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              Project Completion Rate
-              <Badge variant="secondary">{completionRate}%</Badge>
+              Project Status Overview
+              <Badge variant="secondary">{projects.length} Total</Badge>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Progress value={completionRate} className="w-full" />
-            <p className="text-sm text-muted-foreground mt-2">
-              {projects.filter(p => p.status === "completed").length} of {projects.length} projects completed
-            </p>
+            <ChartContainer
+              config={{
+                count: {
+                  label: "Projects",
+                  color: "hsl(var(--chart-1))",
+                },
+              }}
+              className="h-[200px]"
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="status" 
+                    tick={{ fontSize: 12 }}
+                    interval={0}
+                  />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar 
+                    dataKey="count" 
+                    radius={[4, 4, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </ChartContainer>
           </CardContent>
         </Card>
 
