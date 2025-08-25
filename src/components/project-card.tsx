@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StatusBadge } from "@/components/ui/status-badge"
 import { Button } from "@/components/ui/button"
-import { MoreHorizontal, Calendar, ArrowRight } from "lucide-react"
+import { MoreHorizontal, Calendar, ArrowRight, Target } from "lucide-react"
 
 type ProjectStatus = "not-started" | "in-progress" | "completed" | "on-hold"
 
@@ -66,17 +66,32 @@ export function ProjectCard({
 
       <CardContent className="pt-0">
         <div className="space-y-4">
-          {/* Status Badge */}
-          <div className="flex items-center justify-between">
-            <StatusBadge status={status}>
-              {statusLabels[status]}
-            </StatusBadge>
-            {targetDate && (
+          {/* Status Badge and Dates */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <StatusBadge status={status}>
+                {statusLabels[status]}
+              </StatusBadge>
+            </div>
+            
+            {/* Dates Section */}
+            <div className="space-y-1">
+              {/* Work Started Date */}
               <div className="flex items-center text-xs text-muted-foreground">
                 <Calendar className="h-3 w-3 mr-1" />
-                {targetDate}
+                <span className="mr-1">Started:</span>
+                {status === "not-started" ? "N/A" : startDate}
               </div>
-            )}
+              
+              {/* Target Date */}
+              {targetDate && (
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <Target className="h-3 w-3 mr-1" />
+                  <span className="mr-1">Target:</span>
+                  {targetDate}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Next Step */}
