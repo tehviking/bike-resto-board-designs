@@ -51,6 +51,17 @@ export function ProjectCard({
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </div>
+        
+        {/* Project Image */}
+        {imageUrl && (
+          <div className="aspect-video rounded-md overflow-hidden bg-muted mt-4">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
       </CardHeader>
 
       <CardContent className="pt-0">
@@ -78,17 +89,6 @@ export function ProjectCard({
                 <span className="text-sm text-foreground">{nextStep}</span>
                 <ArrowRight className="h-4 w-4 text-muted-foreground" />
               </div>
-            </div>
-          )}
-
-          {/* Project Image */}
-          {imageUrl && (
-            <div className="aspect-video rounded-md overflow-hidden bg-muted">
-              <img
-                src={imageUrl}
-                alt={title}
-                className="w-full h-full object-cover"
-              />
             </div>
           )}
         </div>
