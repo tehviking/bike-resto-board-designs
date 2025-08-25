@@ -2,39 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Bicycle Restoration Dashboard Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 13% 98%;
+    --foreground: 220 26% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 26% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 26% 14%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 26% 14%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217 10% 96%;
+    --muted-foreground: 220 14% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 217 10% 96%;
+    --accent-foreground: 220 26% 14%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 217 12% 88%;
+    --input: 217 12% 88%;
+    --ring: 217 91% 60%;
+
+    /* Status Colors */
+    --status-not-started: 220 9% 46%;
+    --status-not-started-bg: 220 9% 95%;
+    --status-in-progress: 217 91% 60%;
+    --status-in-progress-bg: 217 91% 95%;
+    --status-completed: 142 76% 36%;
+    --status-completed-bg: 142 76% 95%;
+    --status-on-hold: 38 92% 50%;
+    --status-on-hold-bg: 38 92% 95%;
+
+    /* Design System */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(220, 89%, 65%));
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%), hsl(217, 10%, 98%));
+    --shadow-card: 0 4px 6px -1px hsl(220, 26%, 14% / 0.05), 0 2px 4px -1px hsl(220, 26%, 14% / 0.03);
+    --shadow-button: 0 1px 3px 0 hsl(220, 26%, 14% / 0.1), 0 1px 2px 0 hsl(220, 26%, 14% / 0.06);
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 

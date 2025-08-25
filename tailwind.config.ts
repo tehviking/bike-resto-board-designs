@@ -52,6 +52,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				status: {
+					'not-started': 'hsl(var(--status-not-started))',
+					'not-started-bg': 'hsl(var(--status-not-started-bg))',
+					'in-progress': 'hsl(var(--status-in-progress))',
+					'in-progress-bg': 'hsl(var(--status-in-progress-bg))',
+					'completed': 'hsl(var(--status-completed))',
+					'completed-bg': 'hsl(var(--status-completed-bg))',
+					'on-hold': 'hsl(var(--status-on-hold))',
+					'on-hold-bg': 'hsl(var(--status-on-hold-bg))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +77,17 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-card': 'var(--gradient-card)',
+			},
+			boxShadow: {
+				'card': 'var(--shadow-card)',
+				'button': 'var(--shadow-button)',
+			},
+			transitionTimingFunction: {
+				'smooth': 'var(--transition-smooth)',
 			},
 			keyframes: {
 				'accordion-down': {
