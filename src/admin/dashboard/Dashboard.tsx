@@ -1,5 +1,5 @@
 import { ProjectCard } from "@/components/project-card"
-import { DashboardHeader } from "@/components/dashboard-header"
+import { DashboardHeader } from "./components/dashboard-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts"
