@@ -204,13 +204,8 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Parts Overview */}
-        <div className="mb-8">
-          <PartsOverview />
-        </div>
-
         {/* Project Grid */}
-        <div className="space-y-6">
+        <div className="space-y-6 mb-8">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold">Current Projects</h2>
             <Badge variant="outline">
@@ -233,6 +228,11 @@ export default function Dashboard() {
               />
             ))}
           </div>
+        </div>
+
+        {/* Parts Overview */}
+        <div className="mb-8">
+          <PartsOverview />
         </div>
       </main>
     </div>
