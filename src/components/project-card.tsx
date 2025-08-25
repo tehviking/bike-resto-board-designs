@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { StatusBadge } from "@/components/ui/status-badge"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal, Calendar, ArrowRight, Target } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 type ProjectStatus = "not-started" | "in-progress" | "completed" | "on-hold"
 
@@ -33,8 +34,17 @@ export function ProjectCard({
   targetDate,
   imageUrl,
 }: ProjectCardProps) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/admin/project/${id}`);
+  };
+
   return (
-    <Card className="bg-gradient-card shadow-card hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
+    <Card 
+      className="bg-gradient-card shadow-card hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer"
+      onClick={handleCardClick}
+    >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="space-y-1 flex-1">
@@ -47,7 +57,15 @@ export function ProjectCard({
               </p>
             )}
           </div>
-          <Button variant="ghost" size="icon" className="h-8 w-8 ml-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="h-8 w-8 ml-2"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click when clicking the menu button
+              // TODO: Add dropdown menu for actions like edit, delete, etc.
+            }}
+          >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </div>
