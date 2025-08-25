@@ -9,7 +9,8 @@ import {
   PauseCircle,
   Settings,
   Plus,
-  Palette
+  Palette,
+  Cog
 } from "lucide-react"
 
 import {
@@ -29,6 +30,7 @@ import { Button } from "@/components/ui/button"
 const mainItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "All Projects", url: "/projects", icon: Package },
+  { title: "All Parts", url: "/parts", icon: Cog },
   { title: "Inspiration", url: "/inspiration", icon: Palette },
 ]
 
