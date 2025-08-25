@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Plus, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { useNavigate } from "react-router-dom"
 
 export function DashboardHeader() {
+  const navigate = useNavigate();
+
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
       <div className="flex h-16 items-center justify-between px-6">
@@ -28,7 +31,11 @@ export function DashboardHeader() {
           </div>
 
           {/* Add Project Button */}
-          <Button variant="primary" className="gap-2">
+          <Button 
+            variant="primary" 
+            className="gap-2"
+            onClick={() => navigate("/projects/new")}
+          >
             <Plus className="h-4 w-4" />
             <span className="hidden sm:inline">Add Project</span>
           </Button>

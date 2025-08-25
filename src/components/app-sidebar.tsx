@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { 
   Wrench, 
   LayoutDashboard, 
@@ -48,6 +48,7 @@ const settingsItems = [
 export function AppSidebar() {
   const { state } = useSidebar()
   const location = useLocation()
+  const navigate = useNavigate()
   const currentPath = location.pathname
   const isCollapsed = state === "collapsed"
 
@@ -82,6 +83,7 @@ export function AppSidebar() {
             variant="primary" 
             className={isCollapsed ? "w-full p-2" : "w-full"}
             size={isCollapsed ? "icon" : "default"}
+            onClick={() => navigate("/projects/new")}
           >
             <Plus className="h-4 w-4" />
             {!isCollapsed && <span>Add Project</span>}

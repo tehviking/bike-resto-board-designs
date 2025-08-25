@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, SortAsc, Plus, Package } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import bikeProject1 from "@/assets/bike-project-1.jpg";
 import bikeProject2 from "@/assets/bike-project-2.jpg";
@@ -29,6 +29,7 @@ interface Project {
 
 const AllProjects = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("title");
@@ -174,7 +175,10 @@ const AllProjects = () => {
               Manage and track all your bicycle restoration projects
             </p>
           </div>
-          <Button className="flex items-center gap-2">
+          <Button 
+            className="flex items-center gap-2"
+            onClick={() => navigate("/projects/new")}
+          >
             <Plus className="h-4 w-4" />
             New Project
           </Button>
@@ -319,7 +323,7 @@ const AllProjects = () => {
                   : "Start by creating your first restoration project"
                 }
               </p>
-              <Button>
+              <Button onClick={() => navigate("/projects/new")}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create New Project
               </Button>
